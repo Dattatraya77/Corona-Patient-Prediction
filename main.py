@@ -18,7 +18,7 @@ def predict():
         
         #pickle_in = open("corona.pkl","rb")
         
-        #
+        
         
         age = request.form['age']
         fever = request.form['fever']
@@ -35,10 +35,10 @@ def predict():
        
 
         #print('#-------------------------------data is here-------------------------------------#')
-        #print(age,body,fever,cold,breath)
+        #print(age,bodyPain,fever,Cold,diffBreath)
         
         clf = pickle.load(open("corona.pkl", "rb"))
-        #columns  -- Age,	Fever,	BodyPains,	RunnyNose,	Difficulty_in_Breath
+        #columns  -- age,	fever,	bodyPain,	runnyNose,	diffBreath
         data = [[int(age),int(fever),int(bodyPain),int(contactwithCOVIDPatient),int(soreThroat),int(coarsenessVoice),int(Cold),int(Headache),int(runnyNose),int(travelHistory),int(dryCough),int(diffBreath)]]
         predict = clf.predict(data)[0]
         proba_score = clf.predict_proba(data)[0][1]
