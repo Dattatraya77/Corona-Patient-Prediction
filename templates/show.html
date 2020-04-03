@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+ 
+ 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <title>Corona Patient Symptom Checker </title>
+  </head>
+  <body>
+    
+
+    <nav class="navbar navbar-light" style="background-color:darkred;">
+        <center><h1 style="color:white;">COVID-19 Symptom Checker</h1></center>
+    </nav>
+
+
+       
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="testimonial py-5" id="testimonial">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 py-5 text-white text-center " style="background-color: darkred;">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="https://cdn.pixabay.com/photo/2020/02/26/11/47/smilie-4881520_960_720.png" style="width:50%">
+                        <h2 class="py-3">Corona Virus Prediction</h2>
+                        <p>
+                            <b> <h4>Is it our job to protect ourselves.</h4></b><br>
+                            <h5>At least a some sort of help from my side to the world.</h5> <br>
+                            <b>Contact me : drwalunj.2010@gmail.com</b><br><br>
+                            <b>Recommendation :</b><br>
+                            Home quarantine for 14 days.<br>
+                            Avoid public activities outside home.<br>
+                            Monitor your health daily for any active symptoms.<br>
+                            Avoid any travel unless absolutely necessary.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-3 border">
+
+              <h3 style="color: green; text-align: center;">Thanks for Using COVID-19 Symptom Checker</h3>
+
+              {% if prediction =='Positive(High Risk)' %}
+                <div class="card text-white border-danger mb-3" style="max-width: 21rem; margin-left: 200px;">
+                  <div class="card-header" style="background-color: red;"><b><h4>Risk Factor of COVID-19</h4></b></div>
+                  <div class="card-body">
+                    <h5 class="card-title" style="color: red;">Status : {{prediction}}</h5>
+                    <h5 class="card-title" style="color: red;">Probability of Infection : {{proba_score}}%</h5>
+                  </div>
+                </div>
+              
+                {% endif %}
+
+                {% if prediction =='Negative(Low Risk)' %}
+                <div class="card text-white border-success mb-3 " style="max-width: 21rem; margin-left: 200px;">
+                  <div class="card-header" style="background-color: green;"><b><h4>Risk Factor of COVID-19</h4></b></div>
+                  <div class="card-body">
+                    <h5 class="card-title" style="color: green;">Status : {{prediction}}</h5>
+                    <h5 class="card-title" style="color: green;">Probability of Infection : {{proba_score}}%</h5>
+                  </div>
+                </div>
+                {% endif %}
+                <h6 style="color: red; text-align: center;">*This is based on current understanding of the diseases which is subject to change.</h6>
+                <h6 style="color: red; text-align: center;">*Please do consult the doctor and take their advice in case you are not feeling well.</h6>
+                
+                <h5 style="color: black; text-align: center;">Your Responses</h5>
+                <form  action='/predict' method="POST">
+                    <div class="form-row">
+                        {% if age >= '60' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Please Enter Your Age:" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{age}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if age < '60' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Please Enter Your Age:" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:green;">{{age}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if fever == 'No Fever' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have fever?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: green;">{{fever}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if fever == 'Little Fever' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have fever?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:blue;">{{fever}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if fever == 'High Fever' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have fever?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{fever}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        {% if Cold == 'NO' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have cold?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:green;">{{Cold}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if Cold == 'YES' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have cold?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{Cold}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+                        {% if bodyPain == 'No Pain' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have Body Pains?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: green;">{{bodyPain}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bodyPain == 'Little Pain' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have Body Pains?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:blue;">{{bodyPain}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bodyPain == 'Severe Pain' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have Body Pains?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{bodyPain}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        {% if diffBreath == 'No Difficulty' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do Feel shortness of breath?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:green;">{{diffBreath}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if diffBreath == 'Little Difficulty' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do Feel shortness of breath?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:blue;">{{diffBreath}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if diffBreath == 'Severe Difficulty' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do Feel shortness of breath?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{diffBreath}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if soreThroat == 'NO' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have sore throat?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: green;">{{soreThroat}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if soreThroat == 'YES' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have sore throat?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{soreThroat}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        {% if coarsenessVoice == 'NO' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have coarseness in voice?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: green;">{{coarsenessVoice}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if coarsenessVoice == 'YES' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have coarseness in voice?" aria-describedby="basic-addon2" disabled >
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{coarsenessVoice}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+
+                        {% if Headache == 'No Headache' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have headache?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: green;">{{Headache}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if Headache == 'Little Headache' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have headache?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: blue;">{{Headache}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if Headache == 'Severe Headache' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have headache?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{Headache}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        {% if runnyNose == 'NO' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have runny Nose?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:green;">{{runnyNose}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if runnyNose == 'YES' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have runny Nose?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{runnyNose}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if dryCough == 'NO' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have dry Cough?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:green;">{{dryCough}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if dryCough == 'YES' %}
+                        <div class="input-group col-md-6">
+                            <input type="text" style="background-color: white;" class="form-control" placeholder="Do you have dry Cough?" aria-describedby="basic-addon2" disabled>
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color: red;">{{dryCough}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <br>
+                    {% if travelHistory == 'YES' %}
+                    <div class="form-row">
+                        <label>Have you or someone in your family travelled within India in public transport and came in close contact with someone with cough , cold , fever and shortness of breath in the last 14 days?</label>
+                        <span class="input-group-text" id="basic-addon2" style="color: red;">{{travelHistory}}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if travelHistory == 'NO' %}
+                    <div class="form-row">
+                        <label>Have you or someone in your family travelled within India in public transport and came in close contact with someone with cough , cold , fever and shortness of breath in the last 14 days?</label>
+                        <span class="input-group-text" id="basic-addon2" style="color:green;">{{travelHistory}}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if contactwithCOVIDPatient == 'YES' %}
+                    <div class="form-row">
+                        <label>Have you or someone in your family come in close contact with a confirmed COVID-19 patient in the last 14 days?</label>
+                        <span class="input-group-text" id="basic-addon2" style="color: red;">{{contactwithCOVIDPatient}}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if contactwithCOVIDPatient == 'NO' %}
+                    <div class="form-row">
+                        <label>Have you or someone in your family come in close contact with a confirmed COVID-19 patient in the last 14 days?</label>
+                        <span class="input-group-text" id="basic-addon2" style="color:green;">{{contactwithCOVIDPatient}}</span>
+                    </div>
+                    {% endif %}
+
+                </form>
+
+                {% if message %}
+                <h4 style="color:blue;">Message: <b style="color:red;">{{message}}</h4>
+                {% endif %}
+
+                <a href="/">
+                    <center><button type="submit" class="btn btn-success">Go Back</button></center>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    img {
+        width:100%;
+    }
+    .form-control::-webkit-input-placeholder {
+    color:black;
+    
+  }
+</style>
+
+     
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

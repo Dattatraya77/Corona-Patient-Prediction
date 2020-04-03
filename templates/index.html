@@ -1,1 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+ 
+ 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Corona Patient Symptom Checker </title>
+  </head>
+  <body>
+    
+
+    <nav class="navbar navbar-light" style="background-color:darkred;">
+      <center><h1 style="color:white;">COVID-19 Symptom Checker</h1></center>
+    </nav>
+
+
+       
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="testimonial py-5" id="testimonial">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4  text-white text-center " style="background-color:darkred;">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="https://cdn.pixabay.com/photo/2020/02/26/11/47/smilie-4881520_960_720.png" style="width:50%">
+                        <h2 class="py-3">Corona Virus Prediction</h2>
+                        <p>
+                            <b> <h4>Is it our job to protect ourselves.</h4></b><br>
+                            <h5>At least a some sort of help from my side to the world.</h5> <br>
+                            <b>Contact me : drwalunj.2010@gmail.com</b><br><br>
+                            <b>Recommendation :</b><br>
+                            Home quarantine for 14 days. Avoid public activities outside home. Monitor your health daily for any active symptoms. Avoid any travel unless absolutely necessary.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border">
+                <h4 class="pb-4">Please answer the question to the best of your knowledge</h4>
+                <form  action='/predict' method="POST" class="was-validated">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input type="number" id="Age" name="age"  placeholder="Please Enter Your Age (Eg: 30)." class="form-control" type="text" min="1" max="99" maxlength="2" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <select id="inputState" class="form-control" name='fever' required>
+                            <option value="" selected>Do you have fever?</option>
+                            <option value='-1' style="color:green">No Fever</option>
+                            <option value='0' style="color:blue">Little Fever</option>
+                            <option value='1' style="color: red;">High Fever</option>
+                          </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='Cold' required>
+                              <option value="" selected>Do you have cold?</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='bodyPain' required>
+                                <option value="" selected>Do you have Body Pains?</option>
+                                <option value='-1' style="color: green;">No Pain</option>
+                                <option value='0' style="color: blue;">Little Pain</option>
+                                <option value='1' style="color: red;">Severe Pain</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='diffBreath' required>
+                              <option value="" selected >Do you feel shortness of breath?</option>
+                              <option value='-1' style="color: green;">No Difficulty</option>
+                              <option value='0' style="color: blue;">Little Difficulty</option>
+                              <option value='1' style="color: red;">Severe Difficulty</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='soreThroat' required>
+                              <option value="" selected>Do you have sore throat?</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='coarsenessVoice' required>
+                              <option value="" selected >Do you have coarseness in voice?</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='Headache' required>
+                              <option value="" selected>Do you have headache?</option>
+                              <option value='-1' style="color: green;">No Headache</option>
+                              <option value='0' style="color: blue;">Little Headache</option>
+                              <option value='1' style="color: red;">Severe Headache</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='runnyNose' required>
+                              <option value="" selected >Do you have runny Nose?</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control" name='dryCough' required>
+                              <option value="" selected>Do you have dry Cough?</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        
+                            <label for="travelHistory">Have you or someone in your family travelled within India in public transport and came in close contact with someone with cough , cold , fever and shortness of breath in the last 14 days?</label>
+                            <select id="inputState" class="form-control custom-select" name='travelHistory' required>
+                              <option value="" selected>Choose...</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        
+                    </div>
+
+                    <div class="form-row">
+                        
+                            <label for="contactwithCOVIDPatient">Have you or someone in your family come in close contact with a confirmed COVID-19 patient in the last 14 days?</label>
+                            <select class="form-control custom-select" id="inputState" name='contactwithCOVIDPatient' required>
+                              <option value="" selected>Choose...</option>
+                              <option value='1' style="color: red;"> YES</option>
+                              <option value='0' style="color: green;"> NO</option>
+                            </select>
+                        
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <center><button type="submit" class="btn btn-success">Submit</button></center>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    img {
+        width:100%;
+    }
+</style>
+
+     
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
